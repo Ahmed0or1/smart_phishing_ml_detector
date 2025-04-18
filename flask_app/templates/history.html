@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scan History</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    table {
+      width: 95%;
+      border-collapse: collapse;
+      margin: 2rem auto;
+      background-color: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+      font-size: 14px;
+    }
+    th {
+      background-color: #444;
+      color: #fff;
+    }
+    .phishing {
+      color: red;
+      border: 2px solid red;
+      font-weight: bold;
+    }
+    .legitimate {
+      color: green;
+      border: 2px solid green;
+      font-weight: bold;
+    }
+    .center {
+      text-align: center;
+    }
+    .toolbar-logo {
+      height: 20px;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+   <header>
+    <h1 class="text-center">Scan History</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/history">Scan History</a>
+      <a href="/dataset">Dataset</a>
+    </nav>
+  </header>
+  <div class="container">
+
+  <main>
+    <table id="datasetTable">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Model Prediction</th>
+            <th>Long URL</th>
+            <th>Domain</th>
+            <th>Malicious</th>
+            <th>Suspicious</th>
+            <th>Reputation</th>
+            <th>Creation Date</th>
+            <th>Timestamp</th>
+            <th>Archive</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <td>{{ row.id }}</td>
+            <td class="{% if row.model_prediction == 'phishing' %}phishing{% else %}legitimate{% endif %}">
+              {{ row.model_prediction }}
+            </td>
+            <td>{{ row.long_url }}</td>
+            <td>{{ row.domain }}</td>
+            <td>{{ row.malicious_count }}</td>
+            <td>{{ row.suspicious_count }}</td>
+            <td>{{ row.reputation }}</td>
+            <td>{{ row.creation_date }}</td>
+            <td>{{ row.timestamp }}</td>
+            <td class="text-center">
+              <a href="{{ row.archive_url }}" target="_blank" title="View Archive">
+                <img src="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-100.png" alt="Wayback Archive" class="archive-logo">
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </main>
+  
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dataset View</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    table {
+      width: 95%;
+      border-collapse: collapse;
+      margin: 2rem auto;
+      background-color: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+      font-size: 14px;
+    }
+    th {
+      background-color: #444;
+      color: #fff;
+    }
+    .phishing {
+      color: red;
+      border: 2px solid red;
+      font-weight: bold;
+    }
+    .legitimate {
+      color: green;
+      border: 2px solid green;
+      font-weight: bold;
+    }
+    .center {
+      text-align: center;
+    }
+    .toolbar-logo {
+      height: 20px;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Phishing Dataset Viewer</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/history">Scan History</a>
+      <a href="/dataset">Dataset</a>
+    </nav>
+    <button onclick="exportToCSV()">Export to CSV</button>
+  </header>
+
+  <main>
+    <table id="datasetTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Long URL</th>
+          <th>Domain</th>
+          <th>Model Prediction</th>
+          <th>Malicious</th>
+          <th>Suspicious</th>
+          <th>Reputation</th>
+          <th>Creation Date</th>
+          <th>SSL Valid From</th>
+          <th>SSL Valid Until</th>
+          <th>SSL Issuer</th>
+          <th>DNS Total</th>
+          <th>DNS Records</th>
+          <th>WHOIS Registrar</th>
+          <th>WHOIS Status</th>
+          <th>WHOIS Expiry</th>
+          <th>Archive</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+          <td class="{{ 'phishing' if row[16] == 'phishing' else 'legitimate' }}">{{ row[16] }}</td>
+          <td>{{ row[3] }}</td>
+          <td>{{ row[4] }}</td>
+          <td>{{ row[5] }}</td>
+          <td>{{ row[6] }}</td>
+          <td>{{ row[7] }}</td>
+          <td>{{ row[8] }}</td>
+          <td>{{ row[9] }}</td>
+          <td>{{ row[10] }}</td>
+          <td>{{ row[11] }}</td>
+          <td>{{ row[13] }}</td>
+          <td>{{ row[14] }}</td>
+          <td>{{ row[15] }}</td>
+          <td>
+            <a href="{{ row[17] }}" target="_blank">
+              <img class="toolbar-logo" src="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-100.png" alt="Wayback Machine">
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    function exportToCSV() {
+      const table = document.getElementById("datasetTable");
+      const rows = Array.from(table.rows);
+      const csvContent = rows.map(row =>
+        Array.from(row.cells).map(cell => `"${cell.textContent}"`).join(",")
+      ).join("\n");
+
+      const blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "phishing_dataset_export.csv";
+      link.click();
+    }
+  </script>
+</body>
+</html>

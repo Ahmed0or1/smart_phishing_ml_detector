@@ -1,0 +1,14 @@
+body {
+  background-color: #f4f7f9;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+pre {
+  background-color: #e9ecef;
+  padding: 15px;
+  border-radius: 5px;
+}
+
