@@ -104,13 +104,16 @@ Then open your browser and visit: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 | Page             | Description                                      |
 |------------------|--------------------------------------------------|
 | `/`              | **Home**: Enter URL, scan, and show result      |
+
 ![home](https://raw.githubusercontent.com/Ahmed0or1/smart_phishing_ml_detector/refs/heads/main/flask_app/static/home.PNG)
 | Page             | Description                                      |
 |------------------|--------------------------------------------------|
 | `/history`       | **Scan History**: View all scanned entries        |
+
 ![history](https://raw.githubusercontent.com/Ahmed0or1/smart_phishing_ml_detector/refs/heads/main/flask_app/static/history.PNG)
 | Page             | Description                                      |
 |------------------|--------------------------------------------------|
 | `/dataset`       -> **Dataset View**: Export full dataset in CSV |
+
 ![dataset](https://raw.githubusercontent.com/Ahmed0or1/smart_phishing_ml_detector/refs/heads/main/flask_app/static/dataset.PNG)
 
