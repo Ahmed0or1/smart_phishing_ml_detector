@@ -12,6 +12,8 @@
   Department of Forensic Science, Naif Arab University for Security Sciences  
   Riyadh, Kingdom of Saudi Arabia
   
+  ![  Department of Forensic Science, Naif Arab University for Security Sciences  ](https://pbs.twimg.com/profile_images/1368886140011503619/-0At777h_400x400.jpg)
+  
 ## 🔍 Project Overview
 
 This system scans URLs and performs the following actions:
@@ -113,7 +115,7 @@ Then open your browser and visit: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 ![history](https://raw.githubusercontent.com/Ahmed0or1/smart_phishing_ml_detector/refs/heads/main/flask_app/static/history.PNG)
 | Page             | Description                                      |
 |------------------|--------------------------------------------------|
-| `/dataset`       -> **Dataset View**: Export full dataset in CSV |
+| `/dataset`       | **Dataset View**: Export full dataset in CSV |
 
 ![dataset](https://raw.githubusercontent.com/Ahmed0or1/smart_phishing_ml_detector/refs/heads/main/flask_app/static/dataset.PNG)
 
